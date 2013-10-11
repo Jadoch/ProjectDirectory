@@ -1,0 +1,50 @@
+<html>
+
+<body>
+
+<form method="post">
+Company Name: <input type="text" name="CompName"><br>
+Owner: <input type="text" name="Owner"><br>
+Authorized to Sign: <input type="text" name="AuthSign"><br>
+CR: <input type="text" name="CR"><br>
+Activity: <input type="text" name="Act"><br>
+Company Type: <select name="Type">
+  <option value="IndComp">Individual Company</option>
+  <option value="PartLim">Partnership Limited by Shares</option>
+  <option value="GenPart">General Partnership</option>
+  <option value="LimPart">Limited Partnership</option>
+  <option value="Hold">Holding</option>
+  <option value="sarl">Limited Liability (s.a.r.l.)</option>
+  <option value="sal">Joint Stock Company (s.a.l.)</option>
+</select><br>
+
+
+
+
+<input type="submit" value="Submit">
+<?php
+
+inculde 'conx.php'
+  
+if(isset($_POST['Submit'])){
+$CompName=$_POST["CompName"];
+$Owner=$_POST["Owner"];
+$AutS=$_POST["AuthSign"];
+$CR=$_POST["CR"];
+$Act=$_POST["Act"];
+$Type=$_POST["Type"];
+}
+
+$query="INSERT INTO Industry VALUES('$CompName','$Owner','$AutS','$CR','$Act','$Type')";
+mysql_query($query,$db) or die (55);
+
+
+
+
+
+?>
+
+</form>
+</body>
+</html>
+

@@ -1,0 +1,156 @@
+<?php
+session_start(); ?><html>
+<head>
+
+<style>
+a:link {color:white;}    
+a:visited {color:white;}  
+
+</style>
+<link rel="stylesheet" type="text/css" href="adminstyle.css">
+</head>
+
+<body background="adminbg.jpg">
+<a href="admin-home.php" >Admin Home</a></br></br>
+<p align=center>This page purpose is to edit the informations about companies</br> that i want them to be shown on my website 
+by editing and updating.</br>
+ 
+It can also serve to delete companies too. </p>
+<fieldset>
+<legend >Industries</legend>
+<?php 
+include('conx.php');
+
+//
+if(isset($_POST['update'])){
+
+$UpdateInd = "UPDATE Industry SET CompName='$_POST[1]',Owner='$_POST[2]',AuthSign='$_POST[3]',CR='$_POST[4]',Activity='$_POST[5]',CompanyType='$_POST[6]',State='$_POST[7]',District='$_POST[8]',City='$_POST[9]',Street='$_POST[10]',Building='$_POST[11]',Telephone='$_POST[12]',Fax='$_POST[13]',POBOX='$_POST[14]',Website='$_POST[15]',Email='$_POST[16]',Show='$_POST[17]' WHERE Comp_id='$_POST[hidden]'";
+mysql_query($UpdateInd,$accounts);
+
+}
+//
+$query_ind="SELECT * FROM Industry ";
+$inddata = mysql_query($query_ind,$accounts);
+echo "<table border=1><tr>
+<th>Company Name</th>
+<th>Owner</th>
+<th>Authorized to Sign</th>
+<th>CR</th>
+<th>Activity</th>
+<th>Company Type</th>
+<th>State</th>
+<th>District</th>
+<th>City</th>
+<th>Street</th>
+<th>Building</th>
+<th>Telephone</th>
+<th>Fax</th>
+<th>POBOX</th>
+<th>Website</th>
+<th>Email</th>
+<th>Show</th>";
+while($rec=mysql_fetch_array($inddata)){
+echo "<form action=edit-companies.php method=post>";
+echo "<tr>";
+echo "<td>"."<input type=text name=1 value='$rec[CompName]' >"."</td>";
+echo "<td>"."<input type=text name=2 value='$rec[Owner]' >"."</td>";
+echo "<td>"."<input type=text name=3 value='$rec[AuthSign]' >"."</td>";
+echo "<td>"."<input type=text name=4 value='$rec[CR]' >"."</td>";
+echo "<td>"."<input type=text name=5 value='$rec[Activity]' >"."</td>";
+echo "<td>"."<input type=text name=6 value='$rec[CompanyType]' >"."</td>";
+echo "<td>"."<input type=text name=7 value='$rec[State]' >"."</td>";
+echo "<td>"."<input type=text name=8 value='$rec[District]' >"."</td>";
+echo "<td>"."<input type=text name=9 value='$rec[City]' >"."</td>";
+echo "<td>"."<input type=text name=10 value='$rec[Street]' >"."</td>";
+echo "<td>"."<input type=text name=11 value='$rec[Building]' >"."</td>";
+echo "<td>"."<input type=text name=12 value='$rec[Telephone]' >"."</td>";
+echo "<td>"."<input type=text name=13 value='$rec[Fax]' >"."</td>";
+echo "<td>"."<input type=text name=14 value='$rec[POBOX]' >"."</td>";
+echo "<td>"."<input type=text name=15 value='$rec[Website]' >"."</td>";
+echo "<td>"."<input type=text name=16 value='$rec[Email]' >"."</td>";
+echo "<td>"."<input type=text name=17 value='$rec[Submit]' >"."</td>";
+
+echo "<td>"."<input type=hidden name=hidden value='$rec[Comp_id]'>"."</td>";
+echo "<td>"."<input type=submit name=update value ='update'>"."</td>";
+echo "<td>"."<input type=submit name=delete value ='delete'>"."</td>";
+echo "</form>";
+
+}
+echo "</table>";
+mysql_close($accounts);
+?>
+</fieldset>
+
+
+
+<fieldset>
+<legend>Banks</legend>
+<?php 
+include('conx.php');
+
+//
+if(isset($_POST['update2'])){
+
+
+$UpdateBank = "UPDATE Banks SET BankName='$_POST[b1]',CEO='$_POST[b2]',CR='$_POST[b3]',Capital='$_POST[b4]',DateFounded=$_POST[b5], State='$_POST[b6]',District='$_POST[b7]',City='$_POST[b8]',Street='$_POST[b9]',Building='$_POST[b10]',Telephone='$_POST[b11]',Fax='$_POST[b12]',POBOX='$_POST[b13]',Website='$_POST[b14]',Email='$_POST[b15]',Show='$_POST[b16]' WHERE Bank_id='$_POST[hidden2]'";
+mysql_query($UpdateBank	,$accounts);
+
+}
+//
+$query_bank="SELECT * FROM Banks ";
+$bankdata = mysql_query($query_bank,$accounts);
+echo "<table border=1><tr>
+<th>Bank Name</th>
+<th>CEO</th>
+<th>CR</th>
+<th>Capital</th>
+<th>Date Founded</th>
+<th>State</th>
+<th>District</th>
+<th>City</th>
+<th>Street</th>
+<th>Building</th>
+<th>Telephone</th>
+<th>Fax</th>
+<th>POBOX</th>
+<th>Website</th>
+<th>Email</th>
+<th>Show</th>";
+while($rec=mysql_fetch_array($bankdata)){
+echo "<form action='edit-companies.php' method=post>";
+echo "<tr>";
+echo "<td>"."<input type=text name=b1 value='$rec[BankName]' >"."</td>";
+echo "<td>"."<input type=text name=b2 value='$rec[CEO]' >"."</td>";
+echo "<td>"."<input type=text name=b3 value='$rec[CR]' >"."</td>";
+echo "<td>"."<input type=text name=b4 value='$rec[Capital]' >"."</td>";
+echo "<td>"."<input type=text name=b5 value='$rec[DateFounded]' >"."</td>";
+echo "<td>"."<input type=text name=b6 value='$rec[State]' >"."</td>";
+echo "<td>"."<input type=text name=b7 value='$rec[District]' >"."</td>";
+echo "<td>"."<input type=text name=b8 value='$rec[City]' >"."</td>";
+echo "<td>"."<input type=text name=b9 value='$rec[Street]' >"."</td>";
+echo "<td>"."<input type=text name=b10 value='$rec[Building]' >"."</td>";
+echo "<td>"."<input type=text name=b11 value='$rec[Telephone]' >"."</td>";
+echo "<td>"."<input type=text name=b12 value='$rec[Fax]' >"."</td>";
+echo "<td>"."<input type=text name=b13 value='$rec[POBOX]' >"."</td>";
+echo "<td>"."<input type=text name=b14 value='$rec[Website]' >"."</td>";
+echo "<td>"."<input type=text name=b15 value='$rec[Email]' >"."</td>";
+echo "<td>"."<input type=text name=b16 value='$rec[Submit]' >"."</td>";
+
+echo "<td>"."<input type=hidden name=hidden2 value='$rec[Bank_id]'>"."</td>";
+echo "<td>"."<input type=submit name=update2 value ='update'>"."</td>";
+echo "<td>"."<input type=submit name=delete value ='delete'>"."</td>";
+echo "</form>";
+
+}
+echo "</table>";
+mysql_close($accounts);
+?>
+</fieldset>
+
+
+</body>
+
+
+
+</html>
+

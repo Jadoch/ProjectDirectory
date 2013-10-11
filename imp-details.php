@@ -1,0 +1,45 @@
+
+
+
+
+
+
+
+
+<html>
+<head>
+<title>
+Directory of Lebanese Companies
+</title>
+</head>
+<body background="searchbg.jpg" >
+
+<?php
+include("conx.php");
+$val=$_GET['whatever'];
+$sql2="SELECT * FROM Importers WHERE Imp_id=$val";
+$impdetails = mysql_query($sql2,$accounts);
+echo "<table border=0 style='background-color:#E6E6E6'>";
+
+while ($imprecord
+ = mysql_fetch_array($impdetails)){
+$val;
+
+echo "<tr><td>Importer Name:</td><td>".$imprecord['ImpName']."</td></tr>";
+echo "<tr><td>Owner:</td><td>".$imprecord["Owner"]."</td></tr>";
+echo "<tr><td>Activity:</td><td>".$imprecord['Activity']."</td></tr>";
+echo "<tr><td>Adress:</td><td>".$imprecord['City'].','.$imprecord['Street'].','.$imprecord['Building']."</td></tr>";
+echo "<tr><td>Telephone:</td><td>".$imprecord["Telephone"]."</td></tr>";
+echo "<tr><td>Fax:</td><td>".$imprecord['Fax']."</td></tr>";
+echo "<tr><td>PO Box:</td><td>".$imprecord['POBOX']."</td></tr>";
+echo "<tr><td>Website:</td><td>".$imprecord['web']."</td></tr>";
+echo "<tr><td>Email:</td><td>".$imprecord['email']."</td></tr>";
+
+}
+
+echo "</table>";
+
+
+
+ ?>
+</body></html>

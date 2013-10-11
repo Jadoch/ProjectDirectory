@@ -1,0 +1,9 @@
+	<?php 
+// on se connecte à MySQL 
+$db = mysql_connect('localhost', 'root', 'jad123') or die("1"); 
+
+// on sélectionne la base 
+mysql_select_db('projet',$db) or die ("2"); 
+ 
+mysql_close(); 
+?>
